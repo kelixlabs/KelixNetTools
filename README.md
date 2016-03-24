@@ -2,7 +2,6 @@
 
 [![Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-<!-- [![Build Status][ico-travis]][link-travis] -->
 [![Total Downloads][ico-downloads]][link-downloads]
 
 PHP Library for Networking Tools (IPv4 and IPv6)
