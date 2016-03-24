@@ -1,0 +1,32 @@
+{
+    "name": "kelixlabs/kelix-net-tools",
+    "type": "library",
+    "description": "Network Utility package for Laravel 5",
+    "keywords": [
+        "kelixlabs",
+        "KelixNetTools",
+		"Laravel",
+        "Laravel 5",
+		"Network Utility"
+    ],
+    "homepage": "https://github.com/kelixlabs/KelixNetTools",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kelixlabs",
+            "email": "wahyu.kelix@gmail.com",
+            "homepage": "http://kelixlabs.web.id",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5.2",
+        "php" : "~5.5|~7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "kelixlabs\\KelixNetTools\\": "src/"
+        }
+    },
+	"minimum-stability": "dev"
+}
