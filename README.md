@@ -9,25 +9,81 @@ Use for Laravel 5
 
 ## Install
 
-Via Composer
+### Via Composer
 
 ``` bash
 $ composer require kelixlabs/kelix-net-tools
 ```
 
+### Via edit `composer.json`
+	
+	"require": {
+		"kelixlabs/kelix-net-tools": "dev-master"
+	}
+
+#### Next, update Composer from the Terminal:
+
+``` bash
+$ composer update
+```
+
+Once this operation completes, the final step is to add the service provider. Open `config/app.php`, and add a new item to the providers array.
+
+```php
+'aliases' => array(
+    .....
+    kelixlabs\kelixNetTools\kelixNetToolsServiceProvider::class,
+);
+```
+
+Now add the alias.
+
+```php
+'aliases' => array(
+    ......
+    'NetTools' => kelixlabs\kelixNetTools\Facade\NetTools::class,
+);
+```
+
+
 ## Usage
 
 ``` php
-$netTools = new kelixlabs\KelixNetTools\NetTools();
+// Generate network object
+$network = new NetTools;
 // The default IP set to 127.0.0.1 and Netmask 255.255.255.0
 
-echo $netTools->ping('10.0.2.2')->ping();
+// Set the IP and Netmask
+$network::setIP('10.3.30.179');
+$network::setNetmask('255.255.255.0');
 
-echo $netTools->ping('10.0.2.2')->getMac();
+// Get the IP and Netmask
+$ip = $network::getIP();
+$netmask = $network::getNetmask();
 
-echo (string)$netTools->network('10.0.2.2','255.255.255.0')->broadcast;
+// Get Ping latency from current IP set
+$latency = $network::ping()->ping();
 
-echo $netTools->ip('10.0.2.2')->version;
+// Get Ping latency from given ip
+$latency = $network::ping('192.168.1.123')->ping();
+
+// Get Network info from current IP set
+$network = $network::network()->info;
+
+// Get Network info from given IP and Netmask
+$network = $network::network('192.168.1.123','255.255.255.0')->info;
+
+// Get individual Network info
+$CIDR = Network::network()->CIDR;
+$broadcast = (string)Network::network()->broadcast;
+
+// Get MAC address from target's IP
+$mac = $network::network()->mac;
+
+// Bonus Wake On Lan
+// NetTools::WakeOnLan('Mac Address','Broadcast Address')->WakeUp();
+$wakeOnLan = $network::WakeOnLan('74-27-ea-5e-74-59','10.3.30.255')->WakeUp();
+
 ```
 
 ## Change log
