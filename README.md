@@ -21,12 +21,13 @@ $ composer require kelixlabs/kelix-net-tools
 		"kelixlabs/kelix-net-tools": "dev-master"
 	}
 
-#### Next, update Composer from the Terminal:
+Next, update Composer from the Terminal:
 
 ``` bash
 $ composer update
 ```
 
+### Add to laravel config
 Once this operation completes, the final step is to add the service provider. Open `config/app.php`, and add a new item to the providers array.
 
 ```php
