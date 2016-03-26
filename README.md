@@ -33,7 +33,7 @@ Once this operation completes, the final step is to add the service provider. Op
 ```php
 'aliases' => array(
     .....
-    kelixlabs\kelixNetTools\kelixNetToolsServiceProvider::class,
+    kelixlabs\KelixNetTools\kelixNetToolsServiceProvider::class,
 );
 ```
 
@@ -42,7 +42,7 @@ Now add the alias.
 ```php
 'aliases' => array(
     ......
-    'NetTools' => kelixlabs\kelixNetTools\Facade\NetTools::class,
+    'NetTools' => kelixlabs\KelixNetTools\Facade\NetTools::class,
 );
 ```
 
