@@ -9,13 +9,13 @@ Use for Laravel 5
 
 ## Install
 
-### Via Composer
+#### Via Composer
 
 ``` bash
 $ composer require kelixlabs/kelix-net-tools
 ```
 
-### Via edit `composer.json`
+#### Via edit `composer.json`
 	
 	"require": {
 		"kelixlabs/kelix-net-tools": "dev-master"
@@ -27,7 +27,7 @@ Next, update Composer from the Terminal:
 $ composer update
 ```
 
-### Add to laravel config
+#### Add to laravel config
 Once this operation completes, the final step is to add the service provider. Open `config/app.php`, and add a new item to the providers array.
 
 ```php
