@@ -183,6 +183,32 @@ class Network implements \Iterator, \Countable
 		return $this->netmask;
 	}
 
+	public function getDefaultNetmask()
+	{
+		$ip = explode('.',$this->ip);
+		$head = intval($ip[0]);
+		$ret = '255.255.255.0';
+
+		switch ($head) {
+			case ($head >= 1 && $head <= 127):
+				$ret = '255.0.0.0';
+				break;
+			case ($head >= 128 && $head <= 191):
+				$ret = '255.255.0.0';
+				break;
+			case ($head >= 192 && $head <= 223):
+				$ret = '255.255.255.0';
+				break;
+			
+			default:
+				$ret = '255.255.255.0';
+				break;
+		}
+
+		return $ret;
+
+	}
+
 	/**
 	 * @return IP
 	 */
