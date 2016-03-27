@@ -12,7 +12,7 @@ Use for Laravel 5
 #### Via Composer
 
 ``` bash
-$ composer require kelixlabs/kelix-net-tools
+$ composer require kelixlabs/kelix-net-tools:dev-master
 ```
 
 #### Via edit `composer.json`
