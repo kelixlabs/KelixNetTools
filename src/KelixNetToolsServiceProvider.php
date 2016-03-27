@@ -23,8 +23,8 @@ class KelixNetToolsServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		$this->app['NetTools'] = $this->app->share(function($app){
+		$this->app->singleton('nettools',function($app){
 			return new NetTools;
-		});
+		})
 	}
 }
