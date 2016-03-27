@@ -25,6 +25,6 @@ class KelixNetToolsServiceProvider extends ServiceProvider
 	{
 		$this->app->singleton('nettools',function($app){
 			return new NetTools;
-		})
+		});
 	}
 }
