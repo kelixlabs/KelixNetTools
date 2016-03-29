@@ -95,7 +95,7 @@ class NetTools
         return new Range($firstIP, $lastIP);
     }
 
-    public function WakeOnLan($mac,$addr = "255.255.255.255")
+    public function WakeOnLan($mac = null,$addr = "255.255.255.255")
     {
         return new WakeOnLan($mac,$addr);
     }

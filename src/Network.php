@@ -2,6 +2,7 @@
 namespace kelixlabs\KelixNetTools;
 
 use kelixlabs\KelixNetTools\IP;
+use kelixlabs\KelixNetTools\Ping;
 
 /**
  * @author Safarov Alisher <alisher.safarov@outlook.com>
@@ -388,42 +389,47 @@ class Network implements \Iterator, \Countable
 	*   macAddr, in string.
 	*/
 	public function getMac() {
-		$macAddr = false;
+		$macAddr = '00:00:00:00:00:00';
 
 		$host = escapeshellcmd($this->ip);
-		// Exec string for Windows-based systems.
-		if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-		// -a = Display current ARP entries by introgating current protocol data.
-			$exec_string = 'arp -a ' . $host;
-			exec($exec_string, $output, $return);
+		$ping = new Ping($host);
+		if ($ping->ping()) {
+			// Exec string for Windows-based systems.
+			if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+			// -a = Display current ARP entries by introgating current protocol data.
+				$exec_string = 'arp -a ' . $host;
+				exec($exec_string, $output, $return);
 
-			// $lines=explode("\n", $output);
+				// $lines=explode("\n", $output);
 
-			#look for the output line describing our IP address
-			foreach($output as $line)
-			{
-				$cols=preg_split('/\s+/', trim($line));
-				if ($cols[0]==$this->ip)
+				#look for the output line describing our IP address
+				foreach($output as $line)
 				{
-					$macAddr=str_replace('-', ':', $cols[1]);
+					$cols=preg_split('/\s+/', trim($line));
+					if (trim($cols[0])==$this->ip)
+					{
+						$macAddr=str_replace('-', ':', $cols[1]);
+					}
 				}
 			}
-		}
-		// Exec string for UNIX-based systems (Mac, Linux).
-		else {
-		// -n = Don't resolve names.
-			$exec_string = 'arp -n ' . $host;
-			exec($exec_string, $output, $return);
+			// Exec string for UNIX-based systems (Mac, Linux).
+			else {
+			// -n = Don't resolve names.
+				$exec_string = 'arp -n ' . $host;
+				exec($exec_string, $output, $return);
 
-			// $lines=explode("\n", $output);
+				// $lines=explode("\n", $output);
 
-			#look for the output line describing our IP address
-			foreach($output as $line)
-			{
-				$cols=preg_split('/\s+/', trim($line));
-				if ($cols[0]==$this->ip)
+				#look for the output line describing our IP address
+				foreach($output as $line)
 				{
-					$macAddr=$cols[2];
+					$cols=preg_split('/\s+/', trim($line));
+					if (trim($cols[0])==$this->ip)
+					{
+						if (substr(trim($cols[1]),0,1) != '(') {
+							$macAddr=$cols[2];
+						}
+					}
 				}
 			}
 		}

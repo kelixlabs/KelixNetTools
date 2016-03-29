@@ -18,14 +18,6 @@ class WakeOnLan
 		$this->setBroadCast(is_null($addr) ? '255.255.255.255' : $addr);
 	}
 
-	public function FormIP($ip=null)
-	{
-		$ping = new Ping(is_null($ip) ? '127.0.0.1' : $ip);
-		$this->setMacAddr($ping->getMac());
-		
-		$this->setBroadCast((string)Network::parse($ip.' '.$netmask)->broadcast);
-	}
-
 	public function setMacAddr($mac)
 	{
 		$macFix = str_replace('-', ':', $mac);
