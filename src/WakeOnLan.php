@@ -49,7 +49,7 @@ class WakeOnLan
 			$this->WakeUpNix($magicPacket);
 			$ret .= ' Form Linux';
 		}
-		return $ret;
+		return 'awake';
 	}
 
 	private function WakeUpNix($magicPacket)
