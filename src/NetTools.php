@@ -82,6 +82,9 @@ class NetTools
      */
     public function ip($ip)
     {
+        if (is_null($ip)) {
+            $ip = $this->ip;
+        }
         return new IP($ip);
     }
 
