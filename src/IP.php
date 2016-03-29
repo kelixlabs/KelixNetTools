@@ -191,7 +191,7 @@ class IP
 	/**
 	 * @return string
 	 */
-	public function toBin()
+	public function getBin()
 	{
 		$binary = array();
 		foreach (unpack('C*', $this->in_addr) as $char) {
@@ -204,7 +204,7 @@ class IP
 	/**
 	 * @return string
 	 */
-	public function toHex()
+	public function getHex()
 	{
 		return bin2hex($this->in_addr);
 	}
@@ -212,7 +212,7 @@ class IP
 	/**
 	 * @return int|string
 	 */
-	public function toLong()
+	public function getLong()
 	{
 		$long = 0;
 		if($this->getVersion() === self::IP_V4) {

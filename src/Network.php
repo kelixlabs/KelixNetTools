@@ -127,7 +127,7 @@ class Network implements \Iterator, \Countable
 	 */
 	public static function netmask2prefix(IP $ip) 
 	{
-		return strlen(rtrim($ip->toBin(), 0));
+		return strlen(rtrim($ip->bin, 0));
 	}
 
 	/**
@@ -149,7 +149,7 @@ class Network implements \Iterator, \Countable
 	 */
 	public function setNetmask(IP $ip)
 	{
-		if (!preg_match('/^1*0*$/',$ip->toBin())) {
+		if (!preg_match('/^1*0*$/',$ip->bin)) {
 			throw new \Exception('Invalid Netmask address format');
 		}
 
@@ -292,7 +292,7 @@ class Network implements \Iterator, \Countable
 
 		if ($network->getVersion() === IP::IP_V4) {
 			if ($this->getBlockSize() > 2) {
-				return IP::parseBin(substr($network->toBin(), 0, $network->getMaxPrefixLength() - 1) . '1');
+				return IP::parseBin(substr($network->bin, 0, $network->getMaxPrefixLength() - 1) . '1');
 			}
 		}
 
@@ -309,7 +309,7 @@ class Network implements \Iterator, \Countable
 
 		if ($broadcast->getVersion() === IP::IP_V4) {
 			if ($this->getBlockSize() > 2) {
-				return IP::parseBin(substr($broadcast->toBin(), 0, $broadcast->getMaxPrefixLength() - 1) . '0');
+				return IP::parseBin(substr($broadcast->bin, 0, $broadcast->getMaxPrefixLength() - 1) . '0');
 			}
 		}
 
