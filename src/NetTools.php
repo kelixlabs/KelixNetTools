@@ -80,7 +80,7 @@ class NetTools
      * @param string ip
      * @throws \Exception
      */
-    public function ip($ip)
+    public function ip($ip=null)
     {
         if (is_null($ip)) {
             $ip = $this->ip;
