@@ -434,7 +434,7 @@ class Network implements \Iterator, \Countable
 			}
 		}
 
-		return $macAddr;
+		return strtolower($macAddr);
 		// return $return;
 	}
 
